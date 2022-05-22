@@ -28,7 +28,7 @@ def create_train_data():
     for image_name in images:
         if 'mask' in image_name:
             continue
-        image_mask_name = image_name.split('.')[0] + '_mask.png'
+        image_mask_name = image_name.split('.')[0] + '_mask.tiff'
         img = imread(os.path.join(train_data_path, image_name), as_gray=True)
         img.resize(320,320)
         img_mask = imread(os.path.join(train_data_path, image_mask_name), as_gray=True)
@@ -64,7 +64,7 @@ def create_test_data():
     for image_name in images:
         if 'mask' in image_name:
             continue
-        image_mask_name = image_name.split('.')[0] + '_mask.png'
+        image_mask_name = image_name.split('.')[0] + '_mask.tiff'
         img = imread(os.path.join(test_data_path, image_name), as_gray=True)
         img.resize(320,320)
         img_mask = imread(os.path.join(test_data_path, image_mask_name), as_gray=True)
