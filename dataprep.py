@@ -30,9 +30,13 @@ def create_train_data():
             continue
         image_mask_name = image_name.split('.')[0] + '_mask.tiff'
         img = imread(os.path.join(train_data_path, image_name), as_gray=True)
-        img.resize(320,320)
+        if(img.shape == (320,320)):
+            train_data_count+=1
+            continue
         img_mask = imread(os.path.join(train_data_path, image_mask_name), as_gray=True)
-        img_mask.resize(320,320)
+        if(img_mask.shape == (320,320)):
+            train_mask_count+=1
+            continue
 
         img = np.array([img])
         img_mask = np.array([img_mask])
@@ -44,6 +48,8 @@ def create_train_data():
             print('Done: {0}/{1} images'.format(i, total))
         i += 1
     print('Loading done.')
+    print('test data', train_data_count)
+    print('test mask', train_mask_count)
 
     np.save('imgs_train.npy', imgs)
     np.save('imgs_mask_train.npy', imgs_mask)
@@ -59,16 +65,20 @@ def create_test_data():
 
     i = 0
     print('-'*30)
-    print('Creating training images...')
+    print('Creating validation images...')
     print('-'*30)
     for image_name in images:
         if 'mask' in image_name:
             continue
         image_mask_name = image_name.split('.')[0] + '_mask.tiff'
         img = imread(os.path.join(test_data_path, image_name), as_gray=True)
-        img.resize(320,320)
+        if(img.shape == (320,320)):
+            test_data_count+=1
+            continue
         img_mask = imread(os.path.join(test_data_path, image_mask_name), as_gray=True)
-        img_mask.resize(320,320)
+        if(img_mask.shape == (320,320)):
+            test_mask_count+=1
+            continue
 
         img = np.array([img])
         img_mask = np.array([img_mask])
@@ -80,6 +90,8 @@ def create_test_data():
             print('Done: {0}/{1} images'.format(i, total))
         i += 1
     print('Loading done.')
+    print('test data', test_data_count)
+    print('test mask', test_mask_count)
 
     np.save('imgs_test.npy', imgs)
     np.save('imgs_mask_test.npy', imgs_mask)
