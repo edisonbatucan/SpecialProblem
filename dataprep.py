@@ -1,9 +1,11 @@
 from __future__ import print_function
+from cv2 import resize
 
 import numpy 
 import tifffile as tiff 
 import os
 import numpy as np
+import cv2
 
 from skimage.io import imsave, imread
 
@@ -12,6 +14,30 @@ data_path = './data/'
 image_rows = 320
 image_cols = 320
 
+def resize_image(img, size=(28,28)):
+
+    h, w = img.shape[:2]
+    c = img.shape[2] if len(img.shape)>2 else 1
+
+    if h == w: 
+        return cv2.resize(img, size, cv2.INTER_AREA)
+
+    dif = h if h > w else w
+
+    interpolation = cv2.INTER_AREA if dif > (size[0]+size[1])//2 else cv2.INTER_CUBIC
+
+    x_pos = (dif - w)//2
+    y_pos = (dif - h)//2
+
+    if len(img.shape) == 2:
+        mask = np.zeros((dif, dif), dtype=img.dtype)
+        mask[y_pos:y_pos+h, x_pos:x_pos+w] = img[:h, :w]
+    else:
+        mask = np.zeros((dif, dif, c), dtype=img.dtype)
+        mask[y_pos:y_pos+h, x_pos:x_pos+w, :] = img[:h, :w, :]
+
+
+    return cv2.resize(mask, size, interpolation)
 
 def create_train_data():
     train_data_path = os.path.join(data_path, 'train')
@@ -30,13 +56,9 @@ def create_train_data():
             continue
         image_mask_name = image_name.split('.')[0] + '_mask.tiff'
         img = imread(os.path.join(train_data_path, image_name), as_gray=True)
-        if(img.shape == (320,320)):
-            train_data_count+=1
-            continue
+        img = resize_image(img, (320,320))
         img_mask = imread(os.path.join(train_data_path, image_mask_name), as_gray=True)
-        if(img_mask.shape == (320,320)):
-            train_mask_count+=1
-            continue
+        img_mask = resize_image(img_mask, (320, 320))
 
         img = np.array([img])
         img_mask = np.array([img_mask])
@@ -48,8 +70,6 @@ def create_train_data():
             print('Done: {0}/{1} images'.format(i, total))
         i += 1
     print('Loading done.')
-    print('test data', train_data_count)
-    print('test mask', train_mask_count)
 
     np.save('imgs_train.npy', imgs)
     np.save('imgs_mask_train.npy', imgs_mask)
@@ -72,11 +92,15 @@ def create_test_data():
             continue
         image_mask_name = image_name.split('.')[0] + '_mask.tiff'
         img = imread(os.path.join(test_data_path, image_name), as_gray=True)
-        if(img.shape == (320,320)):
+        if(img.shape != (320,320)):
+            pass
+        else:
             test_data_count+=1
             continue
         img_mask = imread(os.path.join(test_data_path, image_mask_name), as_gray=True)
-        if(img_mask.shape == (320,320)):
+        if(img_mask.shape != (320,320)):
+            pass
+        else:
             test_mask_count+=1
             continue
 
