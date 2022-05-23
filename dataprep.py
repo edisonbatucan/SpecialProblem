@@ -1,4 +1,6 @@
 from __future__ import print_function
+
+from matplotlib import image
 from cv2 import resize
 
 import numpy 
@@ -9,7 +11,7 @@ import cv2
 
 from skimage.io import imsave, imread
 
-data_path = './data/'
+data_path = './data2/'
 
 image_rows = 320
 image_cols = 320
@@ -92,17 +94,9 @@ def create_test_data():
             continue
         image_mask_name = image_name.split('.')[0] + '_mask.tiff'
         img = imread(os.path.join(test_data_path, image_name), as_gray=True)
-        if(img.shape != (320,320)):
-            pass
-        else:
-            test_data_count+=1
-            continue
+        img = resize_image(img,(320,320))
         img_mask = imread(os.path.join(test_data_path, image_mask_name), as_gray=True)
-        if(img_mask.shape != (320,320)):
-            pass
-        else:
-            test_mask_count+=1
-            continue
+        img_mask = resize_image(img_mask,(320,320))
 
         img = np.array([img])
         img_mask = np.array([img_mask])
@@ -114,8 +108,6 @@ def create_test_data():
             print('Done: {0}/{1} images'.format(i, total))
         i += 1
     print('Loading done.')
-    print('test data', test_data_count)
-    print('test mask', test_mask_count)
 
     np.save('imgs_test.npy', imgs)
     np.save('imgs_mask_test.npy', imgs_mask)
