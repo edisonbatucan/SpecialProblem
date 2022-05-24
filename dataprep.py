@@ -11,7 +11,7 @@ import cv2
 
 from skimage.io import imsave, imread
 
-data_path = './data2/'
+data_path = './data4/'
 
 image_rows = 320
 image_cols = 320
