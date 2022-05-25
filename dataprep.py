@@ -11,11 +11,12 @@ import cv2
 
 from skimage.io import imsave, imread
 
-data_path = './data4/'
+data_path = './data/'
 
-image_rows = 320
-image_cols = 320
+image_rows = 256
+image_cols = 256
 
+# Resize Function
 def resize_image(img, size=(28,28)):
 
     h, w = img.shape[:2]
@@ -41,6 +42,18 @@ def resize_image(img, size=(28,28)):
 
     return cv2.resize(mask, size, interpolation)
 
+#histogram equalization
+def hist_equalization(img):
+    hist, bins = np.histogram(img.flatten(), 256, [0,256])
+    cdf = hist.cumsum()
+    cdf_normalized = cdf * hist.max() / cdf.max()
+    cdf_m = np.ma.masked_equal(cdf,0)
+    cdf_m = (cdf_m - cdf_m.min())*255/(cdf_m.max()-cdf_m.min())
+    cdf = np.ma.filled(cdf_m,0).astype('uint8')
+    img2 = cdf[img]
+
+    return img2
+
 def create_train_data():
     train_data_path = os.path.join(data_path, 'train')
     images = os.listdir(train_data_path)
@@ -57,12 +70,15 @@ def create_train_data():
         if 'mask' in image_name:
             continue
         image_mask_name = image_name.split('.')[0] + '_mask.tiff'
-        img = imread(os.path.join(train_data_path, image_name), as_gray=True)
-        img = resize_image(img, (320,320))
-        img_mask = imread(os.path.join(train_data_path, image_mask_name), as_gray=True)
-        img_mask = resize_image(img_mask, (320, 320))
+        # Prostate; do pre-process here: 
+        img = imread(os.path.join(train_data_path, image_name), as_gray=True) # read prostate
+        img = resize_image(img, (256,256)) # resize to 256x256
+        img = hist_equalization(img) # histogram equalization
+        # Mask; do pre-process here:
+        img_mask = imread(os.path.join(train_data_path, image_mask_name), as_gray=True) # read mask and turn to grayscale
+        img_mask = resize_image(img_mask, (256, 256)) # resize to 256x256
 
-        img = np.array([img])
+        img = np.array([img]) 
         img_mask = np.array([img_mask])
 
         imgs[i] = img
@@ -93,10 +109,13 @@ def create_test_data():
         if 'mask' in image_name:
             continue
         image_mask_name = image_name.split('.')[0] + '_mask.tiff'
-        img = imread(os.path.join(test_data_path, image_name), as_gray=True)
-        img = resize_image(img,(320,320))
-        img_mask = imread(os.path.join(test_data_path, image_mask_name), as_gray=True)
-        img_mask = resize_image(img_mask,(320,320))
+        # Prostate; do pre-process here: 
+        img = imread(os.path.join(test_data_path, image_name), as_gray=True) # read prostate
+        img = resize_image(img,(256,256)) # resize to 256x256
+        img = hist_equalization(img) # histogram equalization
+        # Mask; do pre-process here:
+        img_mask = imread(os.path.join(test_data_path, image_mask_name), as_gray=True) # read mask and turn to grayscale
+        img_mask = resize_image(img_mask,(256,256)) # resize to 256x256
 
         img = np.array([img])
         img_mask = np.array([img_mask])
