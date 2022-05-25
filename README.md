@@ -18,6 +18,7 @@ dicom2jpg.dicom2tiff(dicom_path, target_root=output_path, anonymous=False, multi
 <p align="center">
   <img src="./SHOWING/data.gif" width="350">
 </p>
+
 ## Pre-processing
 
 <b>Run dataprep.py</b>
