@@ -1,14 +1,12 @@
 # SpecialProblem
-Repo for our special problem 2 
+  Repo for our special problem 2 
 
 
-# Data Preparation
+## Data Preparation
 
 
-# Pre-processing
+## Pre-processing
 
 
-# Model Accuracy and Loss
+## Model Accuracy and Loss
 
-
-# Results and Findings
