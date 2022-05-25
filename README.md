@@ -17,21 +17,22 @@ output_path = '../out_dicom'
 dicom2jpg.dicom2tiff(dicom_path, target_root=output_path, anonymous=False, multiprocessing=True)
 ```
 <b> Use Labelme Tool </b>
+
+<p align="center">
+  <img src="./SHOWING/" width="350">
+</p>
+
 <br>
 &emsp;Save .json mask in ./json folder
 
 <b>Run ```labelme_to_json_batch.py```</b>
-
-<p align="center">
-  <img src="./SHOWING/data.gif" width="350">
-</p>
-
+<br>
 &emsp;<i>Get mask</i>
 
 <b>Read Data</b>
 
 <p align="center">
-  <img src="./SHOWING/data.gif" width="350">
+  <img src="./SHOWING/data.gif" width="400">
 </p>
 
 ## Pre-processing
@@ -41,13 +42,13 @@ dicom2jpg.dicom2tiff(dicom_path, target_root=output_path, anonymous=False, multi
 <b> Prostate : </b> <i>Read -> Resize -> Histogram Equalization -> save to .npy</i>
 
 <p align="center">
-  <img src="./SHOWING/prostate.gif" width="350">
+  <img src="./SHOWING/prostate.gif" width="500">
 </p>
 
 <b> Mask : </b> <i>Read -> Resize and Grayscale -> save to .npy</i>
 
 <p align="center">
-  <img src="./SHOWING/mask.gif" width="350">
+  <img src="./SHOWING/mask.gif" width="500">
 </p>
 
 ## Model Accuracy and Loss
