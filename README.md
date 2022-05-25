@@ -29,6 +29,9 @@ dicom2jpg.dicom2tiff(dicom_path, target_root=output_path, anonymous=False, multi
 <br>
 &emsp;<i>Get mask</i>
 
+<b>Data Partition : </b> &emsp; <i>(80 : 20, 'Train' : 'Validation')</i>
+
+
 <b>Read Data</b>
 
 <p align="center">
