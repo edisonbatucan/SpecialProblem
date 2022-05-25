@@ -19,7 +19,7 @@ dicom2jpg.dicom2tiff(dicom_path, target_root=output_path, anonymous=False, multi
 <b> Use Labelme Tool </b>
 
 <p align="center">
-  <img src="./SHOWING/" width="350">
+  <img src="./SHOWING/labelme.png" width="600">
 </p>
 
 <br>
@@ -27,7 +27,7 @@ dicom2jpg.dicom2tiff(dicom_path, target_root=output_path, anonymous=False, multi
 
 <b>Run ```labelme_to_json_batch.py```</b>
 <br>
-&emsp;<i>Get mask</i>
+&emsp;<i>Get mask</i> -> <b>Run</b> ```tiff_convert.py ```
 
 <b>Data Partition : </b> &emsp; <i>(80 : 20, 'Train' : 'Validation')</i>
 
@@ -40,7 +40,7 @@ dicom2jpg.dicom2tiff(dicom_path, target_root=output_path, anonymous=False, multi
 
 ## Pre-processing
 
-<b>Run dataprep.py</b>
+<b>```Run dataprep.py```</b>
 
 <b> Prostate : </b> <i>Read -> Resize -> Histogram Equalization -> save to .npy</i>
 
