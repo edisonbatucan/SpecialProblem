@@ -1,10 +1,12 @@
 # Special Problem (Repo for our special problem 1 and 2)
 
 ## Dataset
+
 <b>From SPIE-AAPM-NCI PROSTATEx Challenges (PROSTATEx)</b>
 * https://wiki.cancerimagingarchive.net/pages/viewpage.action?pageId=23691656
 
 ## Data Preparation
+
 <b>dicom to tiff conversion</b>
 ```
 pip install dicom2jpg
@@ -14,6 +16,8 @@ dicom_path = '../dicom'
 output_path = '../out_dicom'
 dicom2jpg.dicom2tiff(dicom_path, target_root=output_path, anonymous=False, multiprocessing=True)
 ```
+<b> Use Labelme Tool </b>
+
 <b>Read Data</b>
 <p align="center">
   <img src="./SHOWING/data.gif" width="350">
@@ -31,7 +35,9 @@ dicom2jpg.dicom2tiff(dicom_path, target_root=output_path, anonymous=False, multi
 <p align="center">
   <img src="./SHOWING/mask.gif" width="350">
 </p>
+
 ## Model Accuracy and Loss
+
 <p align="center">
   <img src="./SHOWING/accuracy.png" width="350" title="hover text">
   <img src="./SHOWING/loss.png" width="350">
