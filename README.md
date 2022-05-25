@@ -45,13 +45,13 @@ dicom2jpg.dicom2tiff(dicom_path, target_root=output_path, anonymous=False, multi
 <b> Prostate : </b> <i>Read -> Resize -> Histogram Equalization -> save to .npy</i>
 
 <p align="center">
-  <img src="./SHOWING/prostate.gif" width="500">
+  <img src="./SHOWING/prostate.gif" width="650">
 </p>
 
 <b> Mask : </b> <i>Read -> Resize and Grayscale -> save to .npy</i>
 
 <p align="center">
-  <img src="./SHOWING/mask.gif" width="500">
+  <img src="./SHOWING/mask.gif" width="650">
 </p>
 
 ## Model Accuracy and Loss
@@ -59,6 +59,14 @@ dicom2jpg.dicom2tiff(dicom_path, target_root=output_path, anonymous=False, multi
 <p align="center">
   <img src="./SHOWING/accuracy.png" width="350" title="hover text">
   <img src="./SHOWING/loss.png" width="350">
+</p>
+
+<br>
+<b>Predictions : </b>
+<br>
+
+<p align="center">
+  <img src="./SHOWING/prediction.gif" width="650">
 </p>
 
 ## References
