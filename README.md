@@ -21,9 +21,15 @@ dicom2jpg.dicom2tiff(dicom_path, target_root=output_path, anonymous=False, multi
 &emsp;Save .json mask in ./json folder
 
 <b>Run ```labelme_to_json_batch.py```</b>
+
+<p align="center">
+  <img src="./SHOWING/data.gif" width="350">
+</p>
+
 &emsp;<i>Get mask</i>
 
 <b>Read Data</b>
+
 <p align="center">
   <img src="./SHOWING/data.gif" width="350">
 </p>
@@ -33,10 +39,13 @@ dicom2jpg.dicom2tiff(dicom_path, target_root=output_path, anonymous=False, multi
 <b>Run dataprep.py</b>
 
 <b> Prostate : </b> <i>Read -> Resize -> Histogram Equalization -> save to .npy</i>
+
 <p align="center">
   <img src="./SHOWING/prostate.gif" width="350">
 </p>
+
 <b> Mask : </b> <i>Read -> Resize and Grayscale -> save to .npy</i>
+
 <p align="center">
   <img src="./SHOWING/mask.gif" width="350">
 </p>
