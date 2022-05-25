@@ -17,7 +17,7 @@ output_path = '../out_dicom'
 dicom2jpg.dicom2tiff(dicom_path, target_root=output_path, anonymous=False, multiprocessing=True)
 ```
 <b> Use Labelme Tool </b>
-
+<br>
 &emsp;Save .json mask in ./json folder
 
 <b>Run ```labelme_to_json_batch.py```</b>
