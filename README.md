@@ -54,6 +54,15 @@ dicom2jpg.dicom2tiff(dicom_path, target_root=output_path, anonymous=False, multi
   <img src="./SHOWING/mask.gif" width="650">
 </p>
 
+## Model Architecture
+
+<br>
+
+<p align="center">
+  <img src="./SHOWING/model.png" width="500">
+</p>
+
+
 ## Model Accuracy and Loss
 
 <p align="center">
