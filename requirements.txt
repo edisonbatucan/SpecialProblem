@@ -1,0 +1,9 @@
+numpy==1.21.0
+matplotlib==3.4.2
+tensorflow==2.5.0
+scikit-image==0.18.3
+keras==2.4.3
+Pillow==8.2.0
+ipykernel==6.0.3
+opencv-python==4.5.3.56
+tifffile==2021.7.30
